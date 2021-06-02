@@ -1,0 +1,42 @@
+
+
+<form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+  <mat-label> </mat-label>
+      <mat-radio-group class="mat-raised-button" variant="contained" color="primary" >
+      <mat-radio-button value="1" >Admin &nbsp;</mat-radio-button>
+      <mat-radio-button value="2">Physician &nbsp;</mat-radio-button>
+      <mat-radio-button value="3">Nurse &nbsp;</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field class="form__input" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput placeholder="Enter email address" required/>
+      <mat-error *ngIf="!loginForm.controls['email'].valid">  Email is required </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="form__input" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required />
+      <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>
+          {{hide ? 'visibility_off' : 'visibility'}}
+      </mat-icon>
+  </button>
+  <mat-error *ngIf="!loginForm.controls['password'].valid">
+      Password is required
+    </mat-error>  
+  </mat-form-field>
+
+
+  <div class="formGroup">
+    <input type="checkbox" value="lsRememberMe" id="rememberMe"> 
+    <mat-label>Remember me</mat-label>
+  </div>
+
+  <div class="form-actions">
+    <button class="form-actions__login" mat-raised-button color="primary" type="submit">Login</button>
+    <button class="#" mat-button>Forget password</button>
+  </div>
+</form>

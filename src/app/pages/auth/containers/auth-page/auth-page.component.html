@@ -1,0 +1,46 @@
+<div class="auth-page">
+  <div class="auth-page__content-block">
+    <div class="auth-page__content-wrapper">
+      <mat-tab-group class="auth-page__group">
+        <mat-tab label="Login">
+          <h4 class="auth-page__group-title">Login Page</h4>
+          <div class="auth-page__border-wrapper">
+            <div class="auth-page__border-line"></div>
+            <p class="auth-page__border-title">or</p>
+            <div class="auth-page__border-line"></div>
+          </div>
+
+          <app-login-form (sendLoginForm)="sendLoginForm()"></app-login-form>
+          <div class="auth-page__border-wrapper">
+            <div class="auth-page__border-line"></div>
+            <p class="auth-page__border-title">or</p>
+            <div class="auth-page__border-line"></div>
+          </div>
+
+          <div class="auth-page__google-button-wrapper">
+            <button mat-raised-button class="auth-page__google-button" routerLink='registration'> New to CT General Hospital
+            </button>
+          </div>
+        </mat-tab>
+        <mat-tab label="New User">
+          <!-- <h4 class="auth-page__group-title"></h4> -->
+          <p class="auth-page__group-title">Welcome! Create you account</p>
+
+          <app-sign-form (sendSignForm)="sendSignForm()"></app-sign-form>
+          
+          <div class="auth-page__google-button-wrapper">
+            <button  mat-raised-button class="auth-page__google-button" routerLink='login'>Already a registered user
+            </button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+    </div>
+  </div>
+  <div class="auth-page__logo">
+    <div class="auth-page__logo-wrapper">
+      <img class="auth-page__logo-img" src="./assets/auth/logo.svg" alt="logo">
+      <h6 class="auth-page__logo-title">CT General Hospital</h6>
+    </div>
+  </div>
+</div>
