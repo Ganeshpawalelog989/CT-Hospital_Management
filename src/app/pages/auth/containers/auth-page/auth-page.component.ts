@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services';
 import { routes } from '../../../../consts';
 
+
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
@@ -13,20 +14,21 @@ export class AuthPageComponent {
   public todayDate: Date = new Date();
   public routers: typeof routes = routes;
 
+  
   constructor(
     private service: AuthService,
-    private router: Router
+    private router: Router,
   ) { }
-
+  
   public sendLoginForm(): void {
     this.service.login();
-
     this.router.navigate([this.routers.DASHBOARD]).then();
   }
 
   public sendSignForm(): void {
     this.service.sign();
-
     this.router.navigate([this.routers.DASHBOARD]).then();
   }
+
+
 }

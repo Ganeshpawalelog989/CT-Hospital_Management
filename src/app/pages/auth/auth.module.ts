@@ -15,6 +15,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AuthPageComponent,
@@ -34,7 +35,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     AuthService,

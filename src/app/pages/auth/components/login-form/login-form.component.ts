@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {CtserviceService} from '../../services/UserService';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -21,9 +23,32 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
+  get f() { return this.loginForm.controls; }
+
+  constructor(private ctService : CtserviceService,private router : Router )
+  {}
   public login(): void {
     if (this.loginForm.valid) {
       this.sendLoginForm.emit();
+      console.log("Inside the On submit");
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+        return;
+    }
+    console.log(this.loginForm.value);
+    this.ctService.login(this.f.email.value, this.f.password.value)
+        .subscribe(data=>{
+              this.router.navigate(['/register']);
+            },
+            error => {
+               // this.alertService.error(error);
+               this.router.navigate(['/login']);
+            });
     }
   }
+
+  logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('currentUser');
+}
 }

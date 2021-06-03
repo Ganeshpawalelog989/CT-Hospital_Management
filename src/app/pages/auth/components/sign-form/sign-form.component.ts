@@ -1,6 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from './must-match.validator';
+import {CtserviceService} from '../../services/UserService';
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-sign-form',
   templateUrl: './sign-form.component.html',
@@ -27,9 +30,23 @@ export class SignFormComponent implements OnInit {
      
   }
 
+  constructor(private ctservice : CtserviceService,private router : Router)
+  {}
+
+  get f() { return this.regiForm.controls; }
+
   public sign(): void {
     if (this.regiForm.valid) {
       this.sendSignForm.emit();
+      this.ctservice.register(this.regiForm.value)
+    .subscribe(data=>{
+      console.log(data);
+      this.router.navigate(['/login']);
+    },
+    error=>{
+      this.router.navigate(['/register'])
+      console.log(error);
+    })
     }
   }
 }
